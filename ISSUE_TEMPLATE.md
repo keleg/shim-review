@@ -10,40 +10,56 @@ Make sure you have provided the following information:
 
 
 ###### What organization or people are asking to have this signed:
-`[your text here]`
+`LLC "NTC IT ROSA"`
 
 ###### What product or service is this for:
-`[your text here]`
+`"ROSA Fresh" - Linux Desktop`
 
 ###### What is the origin and full version number of your shim?
-`[your text here]`
+`https://github.com/rhboot/shim/tree/13`
 
 ###### What's the justification that this really does need to be signed for the whole world to be able to boot it:
-`[your text here]`
+`ROSA Fresh is a non-profit Linux distribution developed by the community and has a long history. Is deployed on a high number of nodes already using it in SecureBoot mode enabled.`
 
 ###### How do you manage and protect the keys used in your SHIM?
-`[your text here]`
+`Shim has the public key of the EV Code Signing key pair (issued by DigiCert) built-in. The key is used to validate GRUB boot loader. No private keys are embedded.Shim binary itself is signed, so the built-in public key cannot be modified or removed without making the signature invalid. This guarantees that if shim has been tampered with and is then used in SecureBoot environments, this will be detected immediately.`
 
 ###### Do you use EV certificates as embedded certificates in the SHIM?
-`[your text here]`
+`Shim has the public key of the EV Code Signing key pair (issued by DigiCert) built-in.`
 
 ###### What is the origin and full version number of your bootloader (GRUB or other)?
-`[your text here]`
+`The source code of GRUB is available here: ftp://ftp.gnu.org/gnu/grub/grub-2.02.tar.xz <ftp://ftp.gnu.org/gnu/grub/grub-2.02.tar.xz>. The patches to GRUB 2.02 specific to ROSA Linux, as well as build scripts, are available here: https://abf.io/import/grub2 `
 
 ###### If your SHIM launches any other components, please provide further details on what is launched
-`[your text here]`
+`Apart from the boot loader (GRUB), shim can launch MokManager tool (developed alongside shim, https://github.com/rhboot/shim )`
 
 ###### How do the launched components prevent execution of unauthenticated code?
-`[your text here]`
+`Same as GRUB, MokManager executable must be signed with the appropriate key (EV Code Signing) for shim to validate and launch it. MokManager itself executes no unauthenticated code.`
 
 ###### Does your SHIM load any loaders that support loading unsigned kernels (e.g. GRUB)?
-`[your text here]`
+`Shim launches GRUB`
 
 ###### What kernel are you using? Which patches does it includes to enforce Secure Boot?
-`[your text here]`
+`Our current kernel is based on the kernel 4.15.0-40.43-generic from Ubuntu 18.04 LTS (http://kernel.ubuntu.com/git/kernel-ppa/mirror/ubuntu-bionic.git/), which already contains the patches to enforce SecureBoot as needed. We have no additional SecureBoot-related patches on top of that.`
+
+`Our patches, configs and build instructions for the kernel (RPM spec file) are available here: https://abf.io/import/kernel-desktop-4.15 `
 
 ###### What changes were made since your SHIM was last signed?
-`[your text here]`
+```
+This is an update from v0.9 to v13. From the changelog:
+* MokManager: Stop using EFI_VARIABLE_APPEND_WRITE
+* Better PCR usage for TPM
+* Use authenticode signature length from WIN_CERTIFICATE structure
+* More configurable build via make variables
+* Workaround for signtool.exe bugs
+* Bug fix for wrong options passed to second stage
+* generate_hash(): fix the regression
+* Ignore BDS when it tells us we got our own path on the command line
+* Handle various different load option implementation differences
+* TPM 1 and TPM 2 support`
+* Use OpenSSL 1.0.2k
+* Lots of minor bug fixes
+```
 
 ###### What is the hash of your final SHIM binary?
-`[your text here]`
+`sha256: b407cdeae8fee3c51300b6974599dff39cb5863223dc2617662fcdb07c68c55b shimx64.efi`
