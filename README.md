@@ -153,6 +153,18 @@ $ make 'DEFAULT_LOADER=\\\\grubx64.efi' VENDOR_CERT_FILE="${HOME}/rpmbuild/SOURC
 
 shimx64.efi should be build on x86_64
 ```
+-------------------------------------------------------------------------------
+Location of certificate
+-------------------------------------------------------------------------------
+``` no-highlight
+https://github.com/keleg/shim-review/blob/ntcitrosa64/rosa.cer
+```
+-------------------------------------------------------------------------------
+Microsoft Uefi submission ID
+-------------------------------------------------------------------------------
+``` no-highlight
+13868295317492157
+```
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
