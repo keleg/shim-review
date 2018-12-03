@@ -149,16 +149,15 @@ The source tree will be in ~/rpmbuild/BUILD/shim-13/.
 
 Now you can either use 'rpmbuild -bb shim-unsigned.spec' to build shim binary or do it manually:
 $ cd ~/rpmbuild/BUILD/shim-13
-$ make 'DEFAULT_LOADER=\\\\gruba32.efi' VENDOR_CERT_FILE="${HOME}/rpmbuild/SOURCES/rosa.cer" EFIDIR=rosa all
+$ make 'DEFAULT_LOADER=\\\\grubia32.efi' VENDOR_CERT_FILE="${HOME}/rpmbuild/SOURCES/rosa.cer" EFIDIR=rosa all
 
-shima32.efi should be build on i586
+shimia32.efi should be build on i586
 ```
 -------------------------------------------------------------------------------
 Location of certificate
 -------------------------------------------------------------------------------
-``` no-highlight
 https://github.com/keleg/shim-review/blob/ntcitrosa32/rosa.cer
-```
+
 -------------------------------------------------------------------------------
 Microsoft Uefi submission ID
 -------------------------------------------------------------------------------
@@ -168,17 +167,14 @@ Microsoft Uefi submission ID
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
-``` no-highlight
 i586:
 Build log: http://file-store.rosalinux.ru/api/v1/file_stores/6599616e1a8d407259424e39eb7fa1790941ac5f.log?show=true
 Build info: https://abf.io/build_lists/2953576
-```
+Build log (copy on github): https://github.com/keleg/shim-review/blob/ntcitrosa32/shim-ia32-build-2953576.log
 
 -------------------------------------------------------------------------------
 Patches to GRUB
 -------------------------------------------------------------------------------
-``` no-highlight
 In case we need to provide the extra patches to grub we use, they are available
 here along with the build instructions (RPM spec file), etc.:
 https://abf.io/import/grub2
-```
