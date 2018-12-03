@@ -153,6 +153,25 @@ $ make 'DEFAULT_LOADER=\\\\gruba32.efi' VENDOR_CERT_FILE="${HOME}/rpmbuild/SOURC
 
 shima32.efi should be build on i586
 ```
+-------------------------------------------------------------------------------
+Location of certificate
+-------------------------------------------------------------------------------
+``` no-highlight
+https://github.com/keleg/shim-review/blob/ntcitrosa32/rosa.cer
+```
+
+Location of certificate
+https://github.com/serviceplanet/shim-builder/blob/master/keys/sp_code_signing_cert.der
+
+-------------------------------------------------------------------------------
+Microsoft Uefi submission ID
+-------------------------------------------------------------------------------
+``` no-highlight
+13868295317492157
+```
+
+Location of certificate
+https://github.com/serviceplanet/shim-builder/blob/master/keys/sp_code_signing_cert.der
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
