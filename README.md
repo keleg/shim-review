@@ -156,9 +156,8 @@ shimx64.efi should be build on x86_64
 -------------------------------------------------------------------------------
 Location of certificate
 -------------------------------------------------------------------------------
-``` no-highlight
 https://github.com/keleg/shim-review/blob/ntcitrosa64/rosa.cer
-```
+
 -------------------------------------------------------------------------------
 Microsoft Uefi submission ID
 -------------------------------------------------------------------------------
@@ -169,17 +168,15 @@ Microsoft Uefi submission ID
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
-``` no-highlight
 x86_64:
 Build log: http://file-store.rosalinux.ru/api/v1/file_stores/c24057860adea52d2ff10e0aa66a59e50f06f040.log?show=true 
 Build info: https://abf.io/build_lists/2953577
-```
+Build log (copy on github): https://github.com/keleg/shim-review/blob/ntcitrosa64/shim-x64-build-2953577.log
+
 
 -------------------------------------------------------------------------------
 Patches to GRUB
 -------------------------------------------------------------------------------
-``` no-highlight
 In case we need to provide the extra patches to grub we use, they are available
 here along with the build instructions (RPM spec file), etc.:
 https://abf.io/import/grub2
-```
