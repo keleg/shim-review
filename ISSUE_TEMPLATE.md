@@ -62,4 +62,4 @@ This is an update from v0.9 to v13. From the changelog:
 ```
 
 ###### What is the hash of your final SHIM binary?
-`sha256: b407cdeae8fee3c51300b6974599dff39cb5863223dc2617662fcdb07c68c55b shimx64.efi`
+`sha256: 67471d9a3d7a50500c4d18b13a0c1ee34c1edfa20d0f348b203d035b970dbb9a shimia32.efi`

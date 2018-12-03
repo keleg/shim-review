@@ -105,9 +105,9 @@ What OS and toolchain must we use to reproduce this build?  Include where to fin
 -------------------------------------------------------------------------------
 ``` no-highlight
 1. OS: ROSA Fresh R10 with all updates from the official repositories
-Installation ISO image for x86_64 builds:
-http://mirror.rosalab.ru/rosa/rosa2016.1/iso/ROSA.Fresh.R10/ROSA.FRESH.KDE.R10.x86_64.uefi.iso
-MD5: 9bb7221aa9d849258e9cda5a3edde5c1
+Installation ISO image for i586 builds:
+http://mirror.rosalab.ru/rosa/rosa2016.1/iso/ROSA.Fresh.R10/ROSA.FRESH.PLASMA.R10.i586.uefi.iso
+MD5: 6affeb3e3ca51b5d323e66e85ca75387
 
 You can install the OS in a VM (VirtualBox or QEMU) using its graphical installer,
 the same way as Fedora or Ubuntu.
@@ -149,18 +149,18 @@ The source tree will be in ~/rpmbuild/BUILD/shim-13/.
 
 Now you can either use 'rpmbuild -bb shim-unsigned.spec' to build shim binary or do it manually:
 $ cd ~/rpmbuild/BUILD/shim-13
-$ make 'DEFAULT_LOADER=\\\\grubx64.efi' VENDOR_CERT_FILE="${HOME}/rpmbuild/SOURCES/rosa.cer" EFIDIR=rosa all
+$ make 'DEFAULT_LOADER=\\\\gruba32.efi' VENDOR_CERT_FILE="${HOME}/rpmbuild/SOURCES/rosa.cer" EFIDIR=rosa all
 
-shimx64.efi should be build on x86_64
+shima32.efi should be build on i586
 ```
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
 ``` no-highlight
-x86_64:
-Build log: http://file-store.rosalinux.ru/api/v1/file_stores/c24057860adea52d2ff10e0aa66a59e50f06f040.log?show=true 
-Build info: https://abf.io/build_lists/2953577
+i586:
+Build log: http://file-store.rosalinux.ru/api/v1/file_stores/6599616e1a8d407259424e39eb7fa1790941ac5f.log?show=true
+Build info: https://abf.io/build_lists/2953576
 ```
 
 -------------------------------------------------------------------------------
