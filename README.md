@@ -162,16 +162,16 @@ https://github.com/keleg/shim-review/blob/ntcitrosa64/rosa.cer
 Microsoft Uefi submission ID
 -------------------------------------------------------------------------------
 ``` no-highlight
-13868295317492157
+13533522991689907
 ```
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
 x86_64:
-Build log: http://file-store.rosalinux.ru/api/v1/file_stores/c24057860adea52d2ff10e0aa66a59e50f06f040.log?show=true 
-Build info: https://abf.io/build_lists/2953577
-Build log (copy on github): https://github.com/keleg/shim-review/blob/ntcitrosa64/shim-x64-build-2953577.log
+Build log: http://file-store.rosalinux.ru/api/v1/file_stores/de379dbe9a237cdc1d0be17aa1ce4309ad21bb99.log?show=true
+Build info: https://abf.io/build_lists/2962088
+Build log (copy on github): https://github.com/keleg/shim-review/blob/ntcitrosa64/shim-13-7-x64-build-2962089.log
 
 
 -------------------------------------------------------------------------------
