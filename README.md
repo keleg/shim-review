@@ -58,100 +58,54 @@ Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
 What upstream shim tag is this starting from:
 -------------------------------------------------------------------------------
-https://github.com/rhboot/shim/tree/13
+Git revision 20e731f4 "VLogError(): Avoid NULL pointer dereferences in (V)Sprint calls".
 
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
 ``` no-highlight
-The source code used to build shim is not stored in a repo but rather prepared
-at build time as follows:
-
-1. Get and unpack https://github.com/rhboot/shim/releases/download/13/shim-13.tar.bz2
-2. Apply the following patches:
-
-// From shim v14+
-Patch0:        shim-13-MokManager-Stop-using-EFI_VARIABLE_APPEND_WRITE.patch
-// From Ubuntu 18.04
-Patch1:        shim-13-define-abort-to-avoid-an-unnecessary-reloc.patch
-
-// 2 more upstream patches
-Patch2:        shim-13-Cryptlib-replace-CryptPem-with-CryptPemNull.patch
-Patch3:        shim-13-CryptLib-Add-the-AsciiStrCpy-decl.patch
-
-The patches and the build instructions (RPM spec file) are here:
-https://abf.io/signer/shim-unsigned
+https://github.com/rhboot/shim/tree/20e731f4
 ```
 
 -------------------------------------------------------------------------------
 What patches are being applied and why:
 -------------------------------------------------------------------------------
 ``` no-highlight
-* (From shim v14+)
-https://abf.io/signer/shim-unsigned/blob/rosa2016.1/shim-13-MokManager-Stop-using-EFI_VARIABLE_APPEND_WRITE.patch
-Important bug fix, affects HP laptops: https://github.com/rhboot/shim/issues/105
-
-* (From Ubuntu 18.04)
-https://abf.io/signer/shim-unsigned/blob/rosa2016.1/shim-13-define-abort-to-avoid-an-unnecessary-reloc.patch
-Build fix.
-
-* (2 more upstream patches, build fixes)
-https://abf.io/signer/shim-unsigned/blob/rosa2016.1/shim-13-Cryptlib-replace-CryptPem-with-CryptPemNull.patch
-https://abf.io/signer/shim-unsigned/blob/rosa2016.1/shim-13-CryptLib-Add-the-AsciiStrCpy-decl.patch
+No additional patches are applied.
 ```
 
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
 -------------------------------------------------------------------------------
 ``` no-highlight
-1. OS: ROSA Fresh R10 with all updates from the official repositories
-Installation ISO image for i586 builds:
-http://mirror.rosalab.ru/rosa/rosa2016.1/iso/ROSA.Fresh.R10/ROSA.FRESH.PLASMA.R10.i586.uefi.iso
-MD5: 6affeb3e3ca51b5d323e66e85ca75387
+OS: ROSA Fresh R11 with all updates from the official repositories
 
-You can install the OS in a VM (VirtualBox or QEMU) using its graphical installer,
-the same way as Fedora or Ubuntu.
+1. Here is a disk image of a QEMU VM with the prepared build environment (approx. 4 Gb in size):
 
-2. After installation, make sure the network connection is working in the installed OS
-and run 'urpmi --auto-update' as root there. This will perform software update and may
-take a while depending on how fast the network is (up to 2-3 hours in our experiments).
+rosa-build32.qcow2:
+https://drive.google.com/file/d/1sMibJzZZsrHOQUB4N_iF7PAl_VXTmacs/view?usp=sharing
+sha1: 334545258cd53c7b1bf160999c8511951655ee20  rosa-build32.qcow2
 
-3. Install build requirements:
-urpmi rpm-build git gnu-efi 'pkgconfig(libelf)' openssl 'pkgconfig(openssl)' pesign
-(single quotes around pkgconfig() are essential)
+One can launch the VM as follows:
 
-No need to install GCC and binutils separately, these will be already installed by this time.
+$ qemu-system-x86_64 -name "ROSA-Build32" -cpu host -machine q35,accel=kvm -m 2G -smp 2 -netdev user,id=network0,net=192.168.30.0/24,host=192.168.30.1,hostfwd=tcp::7031-:22 -device e1000,netdev=network0,mac=02:C0:2C:33:B4:3A -drive file=rosa-build32.qcow2,if=virtio,index=0,media=disk
 
-For the record, here are the versions of the components you mentioned:
+user: builder
+pass: rosabuild
+root pass: rosabuild
+
+SSH access: ssh -p 7031 builder@localhost
+
+2. To build shim, do the following in the guest OS:
+
+$ cd /home/builder/shim/shim.git
+$ git checkout rosa-r11-shim-15-20e731f4
+$ make 'DEFAULT_LOADER=\\\\grubia32.efi' VENDOR_CERT_FILE=/home/builder/shim/rosa.cer EFIDIR=rosa all
+
+3. For the record, here are the versions of the components you mentioned:
 GCC:        5.5.0_2017.10 (Linaro)
 binutils:   2.26.1
-gnu-efi:    3.0.8
-
-4. Create the build directories:
-$ mkdir -p ~/rpmbuild
-$ cd ~/rpmbuild/
-$ mkdir -p SOURCES SPECS BUILD BUILDROOT SRPMS RPMS/{noarch,i586,x86_64}
-
-5. Get the sources, patches and the RPM spec file:
-$ git clone https://abf.io/signer/shim-unsigned.git -b rosa2016.1
-$ cd shim-unsigned
-$ cp *.cer *.patch *.rpmlintrc ~/rpmbuild/SOURCES/
-$ cp shim-unsigned.spec ~/rpmbuild/SPECS/
-$ cd ~/rpmbuild/SOURCES/
-$ wget https://github.com/rhboot/shim/releases/download/13/shim-13.tar.bz2
-
-Prepare the source tree in case you want to inspect it:
-$ cd ~/rpmbuild/SPECS/
-$ rpmbuild -bp shim-unsigned.spec
-
-This will unpack the source tarball and apply the patches mentioned above.
-The source tree will be in ~/rpmbuild/BUILD/shim-13/.
-
-Now you can either use 'rpmbuild -bb shim-unsigned.spec' to build shim binary or do it manually:
-$ cd ~/rpmbuild/BUILD/shim-13
-$ make 'DEFAULT_LOADER=\\\\grubia32.efi' VENDOR_CERT_FILE="${HOME}/rpmbuild/SOURCES/rosa.cer" EFIDIR=rosa all
-
-shimia32.efi should be build on i586
+gnu-efi:    3.0.9
 ```
 -------------------------------------------------------------------------------
 Location of certificate
@@ -162,15 +116,15 @@ https://github.com/keleg/shim-review/blob/ntcitrosa32/rosa.cer
 Microsoft Uefi submission ID
 -------------------------------------------------------------------------------
 ``` no-highlight
-14382586529018599
+No ID yet, because we are required to pass the review first.
 ```
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
-i586:
-Build log: http://file-store.rosalinux.ru/api/v1/file_stores/de379dbe9a237cdc1d0be17aa1ce4309ad21bb99.log?show=true
-Build info: https://abf.io/build_lists/2962088
-Build log (copy on github): https://github.com/keleg/shim-review/blob/ntcitrosa32/shim-13-7-ia32-build-2962088.log
+ia32:
+Build info (the build system will keep it till May 20 or so): https://abf.io/build_lists/3006835
+
+Build log (copy on github): https://github.com/euspectre/shim-review/blob/ntcitrosa32/build-shim-ia32-3006835.log
 
 -------------------------------------------------------------------------------
 Patches to GRUB

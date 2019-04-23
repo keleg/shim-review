@@ -16,7 +16,9 @@ Make sure you have provided the following information:
 `"ROSA Fresh" - Linux Desktop`
 
 ###### What is the origin and full version number of your shim?
-`https://github.com/rhboot/shim/tree/13`
+`https://github.com/rhboot/shim`
+
+`We use v15 will all patches from that git repo up to rev. 20e731f4 inclusive.`
 
 ###### What's the justification that this really does need to be signed for the whole world to be able to boot it:
 `ROSA Fresh is a non-profit Linux distribution developed by the community and has a long history. Is deployed on a high number of nodes already using it in SecureBoot mode enabled.`
@@ -40,26 +42,14 @@ Make sure you have provided the following information:
 `Shim launches GRUB`
 
 ###### What kernel are you using? Which patches does it includes to enforce Secure Boot?
-`Our current kernel is based on the kernel 4.15.0-40.43-generic from Ubuntu 18.04 LTS (http://kernel.ubuntu.com/git/kernel-ppa/mirror/ubuntu-bionic.git/), which already contains the patches to enforce SecureBoot as needed. We have no additional SecureBoot-related patches on top of that.`
+`Our current kernel is based on the kernel 4.15.0-47.50-generic from Ubuntu 18.04 LTS (http://kernel.ubuntu.com/git/kernel-ppa/mirror/ubuntu-bionic.git/), which already contains the patches to enforce SecureBoot as needed. We have no additional SecureBoot-related patches on top of that.`
 
 `Our patches, configs and build instructions for the kernel (RPM spec file) are available here: https://abf.io/import/kernel-desktop-4.15 `
 
 ###### What changes were made since your SHIM was last signed?
 ```
-This is an update from v0.9 to v13. From the changelog:
-* MokManager: Stop using EFI_VARIABLE_APPEND_WRITE
-* Better PCR usage for TPM
-* Use authenticode signature length from WIN_CERTIFICATE structure
-* More configurable build via make variables
-* Workaround for signtool.exe bugs
-* Bug fix for wrong options passed to second stage
-* generate_hash(): fix the regression
-* Ignore BDS when it tells us we got our own path on the command line
-* Handle various different load option implementation differences
-* TPM 1 and TPM 2 support`
-* Use OpenSSL 1.0.2k
-* Lots of minor bug fixes
+This is an update from v0.9 to v15 + changes up to rev. 20e731f4 from the upstream git repo.
 ```
 
 ###### What is the hash of your final SHIM binary?
-`sha256: a534a3c612472d517c20cc8771ec90bd5e59e285549ea16e54fff705a5e15415 shimia32.efi`
+`sha256: 91108c0b59386783d58c0f1ef9351c21e6fc2ebaaf3e8af5f62b8c312f98d331  shimia32.efi`
