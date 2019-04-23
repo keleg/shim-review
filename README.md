@@ -88,7 +88,7 @@ sha1: 334545258cd53c7b1bf160999c8511951655ee20  rosa-build32.qcow2
 
 One can launch the VM as follows:
 
-$ qemu-system-x86_64 -name "ROSA-Build32" -cpu host -machine q35,accel=kvm -m 2G -smp 2 -netdev user,id=network0,net=192.168.30.0/24,host=192.168.30.1,hostfwd=tcp::7031-:22 -device e1000,netdev=network0,mac=02:C0:2C:33:B4:3A -drive file=rosa-build32.qcow2,if=virtio,index=0,media=disk
+$ qemu-kvm -name "ROSA-Build32" -cpu host -machine q35 -m 2G -smp 2 -netdev user,id=network0,net=192.168.30.0/24,host=192.168.30.1,hostfwd=tcp::7031-:22 -device e1000,netdev=network0,mac=02:C0:2C:33:B4:3A -drive file=rosa-build32.qcow2,if=virtio,index=0,media=disk
 
 user: builder
 pass: rosabuild
