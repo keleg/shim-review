@@ -124,7 +124,7 @@ Which files in this repo are the logs for your build?   This should include logs
 x86_64:
 Build info (the build system will keep it till May 20 or so): https://abf.io/build_lists/3006836
 
-Build log (copy on github): https://github.com/euspectre/shim-review/blob/ntcitrosa64/build-shim-x64-3006836.log
+Build log (copy on github): https://github.com/keleg/shim-review/blob/ntcitrosa64/build-shim-x64-3006836.log
 
 -------------------------------------------------------------------------------
 Patches to GRUB
