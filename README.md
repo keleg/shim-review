@@ -124,7 +124,7 @@ Which files in this repo are the logs for your build?   This should include logs
 ia32:
 Build info (the build system will keep it till May 20 or so): https://abf.io/build_lists/3006835
 
-Build log (copy on github): https://github.com/euspectre/shim-review/blob/ntcitrosa32/build-shim-ia32-3006835.log
+Build log (copy on github): https://github.com/keleg/shim-review/blob/ntcitrosa32/build-shim-ia32-3006835.log
 
 -------------------------------------------------------------------------------
 Patches to GRUB
