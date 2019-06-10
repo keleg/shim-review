@@ -44,6 +44,7 @@ Who is the primary contact for security updates, etc.
 - Name: Gaidukov Andrew
 - Position: CTO
 - Email address: a.gaidukov@rosalinux.ru
+- PGP: 069D EDAD 9B02 3BC6 5EA4 ED76 2C02 DDBE 5E2E E0CA
 ```
 
 -------------------------------------------------------------------------------
@@ -53,6 +54,7 @@ Who is the secondary contact for security updates, etc.
 - Name: Vladimir Potapov (keleg)
 - Position: Developer
 - Email address: v.potapov@rosalinux.ru
+- PGP: 7569 5001 D14D 1A7D 250B 16EE 0012 E2FE 6FDA B368
 ```
 
 -------------------------------------------------------------------------------
